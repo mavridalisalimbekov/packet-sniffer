@@ -11,7 +11,7 @@ import os
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkagg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib
 matplotlib.use('TkAgg')
 
@@ -217,7 +217,7 @@ class PacketSnifferGUI:
         self.fig, self.ax = plt.subplots(figsize=(10, 6))
         self.fig.patch.set_facecolor('white')
         
-        self.canvas = FigureCanvasTkagg(self.fig, self.viz_frame)
+        self.canvas = FigureCanvasTkAgg(self.fig, self.viz_frame)
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
         viz_control_frame = ttk.Frame(self.viz_frame)
@@ -599,7 +599,7 @@ def main():
     root.mainloop()
 
 if __name__ == "__main__":
-    if os.geteuid() != 0:
+    if os.getpid() != 0:
         print("Warning: This application may require root/administrator privileges to capture packets.")
     
     main()
